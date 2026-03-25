@@ -1,0 +1,30 @@
+---
+- name: Bootstrap python3 (required by Ansible modules)
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install python3 with raw (no Python needed yet)
+      raw: |
+        export DEBIAN_FRONTEND=noninteractive
+        apt-get update
+        apt-get install -y python3
+      changed_when: false
+
+- name: Configuration commune
+  hosts: all
+  gather_facts: false
+  roles:
+    - base
+
+- name: Serveurs web
+  hosts: webservers
+  gather_facts: false
+  roles:
+    - nginx
+
+- name: Serveurs d'application
+  hosts: appservers
+  gather_facts: false
+  roles:
+    - app
+
