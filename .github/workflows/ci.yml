@@ -57,19 +57,23 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - uses: ./.github/actions/setup-tools
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          install-terraform: "true"
-          terraform-version: "1.7.0"
-      - run: echo "Deploying to staging..."
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: app/package-lock.json
+      - run: cd app && npm ci
 
   deploy-production:
     needs: deploy-staging
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - uses: ./.github/actions/setup-tools
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          install-terraform: "true"
-          terraform-version: "1.7.0"
-      - run: echo "Deploying to production..."
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: app/package-lock.json
+      - run: cd app && npm ci
