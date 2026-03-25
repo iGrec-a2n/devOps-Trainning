@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - uses: ./.github/actions/setup-tools/action.yml
+      - uses: ./.github/actions/setup-tools
         with:
           install-terraform: "true"
           terraform-version: "1.7.0"
@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - uses: ./.github/actions/setup-tools/action.yml
+      - uses: ./.github/actions/setup-tools
         with:
           install-terraform: "true"
           terraform-version: "1.7.0"
