@@ -1,4 +1,5 @@
 package-lock.json
+!app/package-lock.json
 output/
 md/
 starter-code/
